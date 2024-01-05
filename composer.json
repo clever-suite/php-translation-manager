@@ -1,0 +1,16 @@
+{
+    "name": "cleversuite/translation-manager",
+    "description": "PHP package for clever translate system",
+    "autoload": {
+        "psr-4": {
+            "CleverSuite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CryptoNinjaGeek",
+            "email": "carsten@ninjageeks.pl"
+        }
+    ],
+    "require": {}
+}
