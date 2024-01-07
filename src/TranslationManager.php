@@ -293,5 +293,46 @@ class TranslationManager {
             }
         }
     }
+
+    public function export_single($path, $namespace) {
+        $languages = $this->languages();
+
+        if (!$languages) {
+            return;
+        }
+
+        foreach ($languages as $language) {
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            if (!isset($namespace)) {
+                return;
+            }
+
+            echo 'Exporting ' . $namespace . ' for ' . $language['code'] . PHP_EOL;
+
+            $translations = $this->translations($namespace, $language['code']);
+
+            $resultObject = [];
+
+            foreach ($translations as $item) {
+                $resultObject[$item['key']] = $item['value'];
+            }
+
+            $jsonContent = json_encode($resultObject, JSON_PRETTY_PRINT);
+
+            file_put_contents($path . '/' . $language['code'] . '.php','<?php return ' . var_export($resultObject, true) . ';');
+        }
+    }
 }
+
+/*
+<?php
+return
+array (
+  'Access Denied Due To GDPA Rules' => 'Adgang forhindret på grund af GDPR',
+  'Accumulated' => 'Akkumuleret'
+  )
+*/
 ?>

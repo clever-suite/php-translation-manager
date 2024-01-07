@@ -17,10 +17,10 @@ echo json_encode($translator->translations('common', 'da')) . PHP_EOL;
 echo json_encode($translator->add('common', ['key', 'key2'])) . PHP_EOL;
 
 echo 'Full export' . PHP_EOL;
-$translator->export('./demo/demo2/demo2');
+$translator->export('./demo/run1');
 
 echo 'Partial export: common' . PHP_EOL;
-$translator->export('./demo/demo2/demo2', ['common']);
+$translator->export_single('./demo/run2', 'common');
 
 echo 'Import single' . PHP_EOL;
 echo json_encode($translator->import_single('da', 'common', 'key', 'value')) . PHP_EOL;
