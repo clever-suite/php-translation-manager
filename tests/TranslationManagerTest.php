@@ -2,7 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-$translator = new \CleverSuite\TranslationManager('2409ae4f-20f4-449d-9cdf-be932c356732');
+$translator = new \CleverSuite\TranslationManager('f3717021-aeca-453e-b05c-1de928595291');
 $translator->setHost('http://localhost:9501/graphql');
 $translator->authenticate();
 

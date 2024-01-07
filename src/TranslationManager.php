@@ -44,19 +44,32 @@ class TranslationManager {
 
         $query = "
             query {
-                languages(condition: {active: 1}) {
+                applicationLanguageRelations {
                     nodes {
-                        active
-                        name
+                    language {
+                        id
                         code
+                        name
+                        active
+                    }
                     }
                 }
-            }
+            }        
         ";
 
         try {
             $data = $this->executeQuery($query);
-            return $data['data']['languages']['nodes'];
+            $result = [];
+    
+            foreach ($data['data']['applicationLanguageRelations']['nodes'] as $row) {
+                $language = $row['language'];
+    
+                if ($language['active'] == 1) {
+                    $result[] = $language;
+                }
+            }
+    
+            return $result;
         } catch (Exception $error) {
             echo $error;
         }
